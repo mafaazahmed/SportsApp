@@ -46,77 +46,185 @@ export default function Addproduct() {
   return (
     <>
       <Navbar/>
-      <div className=" d-flex justify-content-center align-items-center m-3">
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="category" className="form-label mt-3">
-            Category
-          </label>
-          <select
-            className="form-select "
-            aria-label="Default select example"
-            id="category"
-            name="category"
-            value={product.category}
-            onChange={onChange}
-          >
-            <option value={"shoe"}>Shoe</option>
-            <option value="T-shirt">T-shirt</option>
-            <option value="Bat">Bat</option>
-            <option value="Ball">Ball</option>
-            <option value="Sports-bag">Sports-bag</option>
-          </select>
+      <div className="container mt-4">
+        <div className="row justify-content-center">
+          <div className="col-md-8 col-lg-6">
+            <div className="card shadow-lg border-0" style={{
+              background: 'white',
+              borderRadius: '16px',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+              border: '1px solid #e2e8f0'
+            }}>
+              <div className="card-header bg-transparent border-0 text-center pt-4 pb-2">
+                <h3 style={{
+                  background: 'linear-gradient(135deg, rgba(128, 0, 128, 0.85) 0%, rgba(102, 126, 234, 0.85) 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  fontWeight: 700,
+                  fontSize: '1.8rem'
+                }}>
+                  Add New Product
+                </h3>
+                <p className="text-muted mb-0" style={{ fontSize: '0.9rem' }}>
+                  Fill in the details to add a new product
+                </p>
+              </div>
+              
+              <div className="card-body p-4">
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-4">
+                    <label htmlFor="category" className="form-label fw-semibold" style={{ color: '#2d3748', fontSize: '0.95rem' }}>
+                      <i className="fa-solid fa-tags me-2" style={{ color: '#667eea' }}></i>
+                      Category
+                    </label>
+                    <select
+                      className="form-select"
+                      aria-label="Default select example"
+                      id="category"
+                      name="category"
+                      value={product.category}
+                      onChange={onChange}
+                      style={{
+                        borderRadius: '8px',
+                        border: '1px solid #e2e8f0',
+                        padding: '12px 16px',
+                        fontSize: '0.95rem'
+                      }}
+                    >
+                      <option value={"shoe"}>Shoe</option>
+                      <option value="T-shirt">T-shirt</option>
+                      <option value="Bat">Bat</option>
+                      <option value="Ball">Ball</option>
+                      <option value="Sports-bag">Sports-bag</option>
+                    </select>
+                  </div>
+                  
+                  <div className="mb-4">
+                    <label htmlFor="exampleInputEmail1" className="form-label fw-semibold" style={{ color: '#2d3748', fontSize: '0.95rem' }}>
+                      <i className="fa-solid fa-box me-2" style={{ color: '#667eea' }}></i>
+                      Product Name
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      name="name"
+                      value={product.name}
+                      onChange={onChange}
+                      placeholder="Enter product name"
+                      style={{
+                        borderRadius: '8px',
+                        border: '1px solid #e2e8f0',
+                        padding: '12px 16px',
+                        fontSize: '0.95rem'
+                      }}
+                    />
+                  </div>
+                  
+                  <div className="mb-4">
+                    <label htmlFor="formFile" className="form-label fw-semibold" style={{ color: '#2d3748', fontSize: '0.95rem' }}>
+                      <i className="fa-solid fa-image me-2" style={{ color: '#667eea' }}></i>
+                      Upload Image
+                    </label>
+                    <input 
+                      className="form-control" 
+                      type="file" 
+                      id="formFile" 
+                      onChange={onChange}
+                      style={{
+                        borderRadius: '8px',
+                        border: '1px solid #e2e8f0',
+                        padding: '8px 12px',
+                        fontSize: '0.9rem'
+                      }}
+                    />
+                  </div>
+                  
+                  <div className="row mb-4">
+                    <div className="col-md-6">
+                      <label htmlFor="exampleInputPassword1" className="form-label fw-semibold" style={{ color: '#2d3748', fontSize: '0.95rem' }}>
+                        <i className="fa-solid fa-dollar-sign me-2" style={{ color: '#667eea' }}></i>
+                        Price
+                      </label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        id="exampleInputPassword1"
+                        name="price"
+                        value={product.price}
+                        onChange={onChange}
+                        placeholder="0.00"
+                        style={{
+                          borderRadius: '8px',
+                          border: '1px solid #e2e8f0',
+                          padding: '12px 16px',
+                          fontSize: '0.95rem'
+                        }}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <label htmlFor="exampleInputQuantity" className="form-label fw-semibold" style={{ color: '#2d3748', fontSize: '0.95rem' }}>
+                        <i className="fa-solid fa-cubes me-2" style={{ color: '#667eea' }}></i>
+                        Quantity
+                      </label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        id="exampleInputQuantity"
+                        name="quantity"
+                        value={product.quantity}
+                        onChange={onChange}
+                        placeholder="1"
+                        style={{
+                          borderRadius: '8px',
+                          border: '1px solid #e2e8f0',
+                          padding: '12px 16px',
+                          fontSize: '0.95rem'
+                        }}
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="d-flex gap-3 mt-4">
+                    <button 
+                      type="submit" 
+                      className="btn text-white fw-semibold flex-fill"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(128, 0, 128, 0.85) 0%, rgba(102, 126, 234, 0.85) 100%)',
+                        borderRadius: '8px',
+                        padding: '8px 16px',
+                        fontSize: '0.9rem',
+                        border: 'none',
+                        boxShadow: '0 4px 15px rgba(102, 126, 234, 0.3)'
+                      }}
+                    >
+                      <i className="fa-solid fa-plus me-2"></i>
+                      Add Product
+                    </button>
+                    <button 
+                      type="button" 
+                      className="btn btn-outline-secondary fw-semibold"
+                      style={{
+                        borderRadius: '8px',
+                        padding: '8px 16px',
+                        fontSize: '0.9rem',
+                        border: '1px solid #e2e8f0'
+                      }}
+                    >
+                      <i className="fa-solid fa-times me-2"></i>
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
-            Product name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            name="name"
-            value={product.name}
-            onChange={onChange}
-          />
-        </div>
-         <div className="mb-5">
-          <label htmlFor="formFile" className="form-label">
-            Upload Image
-          </label>
-          <input className="form-control" type="file" id="formFile" onChange={onChange}/>
-        </div>
-        <div className="mb-3 d-flex">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-            Price
-          </label>
-          <input
-            type="number"
-            className="form-control mx-1"
-            id="exampleInputPassword1"
-            name="price"
-            value={product.price}
-            onChange={onChange}
-          />
-          <label htmlFor="exampleInputQuantity" className="form-label">
-            Qty
-          </label>
-          <input
-            type="number"
-            className="form-control mx-1"
-            id="exampleInputQuantity"
-            name="quantity"
-            value={product.quantity}
-            onChange={onChange}
-          />
-        </div>
-        <button type="submit" className="btn text-white justify-content-center" style={{backgroundColor : 'purple'}}>
-          Add Product
-        </button>
-      </form>
       </div>
-     <div className="fixed-bottom"><Footer/></div>
+      <div style={{marginTop : '60px'}}><Footer/></div>
+    
     </>
   );
 }

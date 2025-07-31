@@ -51,13 +51,19 @@ router.post("/add", async (req, res) => {
 router.post("/editimg", upload.single("file"), (req,res) => {
     let imgPath = req.file.path;
     editedImg = imgPath.slice(14);
+    console.log(editedImg);
 })
 
 router.put("/update/:id", async (req, res) => {
   let { id } = req.params;
   let product = req.body;
+
+  if(editedImg !== ''){
+    product.img = editedImg;
+  }
+  console.log(product);
   try {
-    let updatedProduct = await Product.findByIdAndUpdate(id, { ...product, img : editedImg });
+    let updatedProduct = await Product.findByIdAndUpdate(id, {...product});
     console.log(updatedProduct);
     res.json({ success: true });
   } catch (error) {

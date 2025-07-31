@@ -1,5 +1,8 @@
 //import './App.css';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import ViewModeRoute from './components/ViewModeRoute';
 import Login from './components/Login';
 import Product from './components/Product';
 import ViewRoles from './Screens/ViewRoles';
@@ -9,26 +12,64 @@ import Editproduct from './components/Editproduct';
 import Signup from './components/Signpup';
 import Edituser from './components/Edituser';
 import ViewBills from './Screens/ViewBills';
-
+import Home from './components/Home';
 
 function App() {
-  
-
   return (
+    <AuthProvider>
    <Router>
     <Routes>
-      <Route exact path='/' element={<Login/>}></Route>
-      <Route exact path='/product' element={<Product/>}></Route>
-      <Route exact path='/viewRoles' element={<ViewRoles/>}></Route>
-      <Route exact path='/generate_bill' element={<Bill/>}></Route>
-      <Route exact path='/addproduct' element={<Addproduct/>}></Route>
-      <Route exact path='/editproduct' element={<Editproduct/>}></Route>
-      <Route exact path='/signup' element={<Signup/>}></Route>
-      <Route exact path='/edituser' element={<Edituser/>}></Route>
-      <Route exact path='/viewbills' element={<ViewBills/>}></Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          } />
+          <Route path="/product" element={
+            <ProtectedRoute>
+              <Product />
+            </ProtectedRoute>
+          } />
+          <Route path="/view-product" element={<ViewModeRoute />} />
+          <Route path="/viewRoles" element={
+            <ProtectedRoute requireAdmin={true}>
+              <ViewRoles />
+            </ProtectedRoute>
+          } />
+          <Route path="/generate_bill" element={
+            <ProtectedRoute>
+              <Bill />
+            </ProtectedRoute>
+          } />
+          <Route path="/addproduct" element={
+            <ProtectedRoute requireAdmin={true}>
+              <Addproduct />
+            </ProtectedRoute>
+          } />
+          <Route path="/editproduct" element={
+            <ProtectedRoute requireAdmin={true}>
+              <Editproduct />
+            </ProtectedRoute>
+          } />
+          <Route path="/signup" element={
+            <ProtectedRoute requireAdmin={true}>
+              <Signup />
+            </ProtectedRoute>
+          } />
+          <Route path="/edituser" element={
+            <ProtectedRoute requireAdmin={true}>
+              <Edituser />
+            </ProtectedRoute>
+          } />
+          <Route path="/viewbills" element={
+            <ProtectedRoute>
+              <ViewBills />
+            </ProtectedRoute>
+          } />
     </Routes>
    </Router>
-  )
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;

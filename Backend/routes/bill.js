@@ -25,14 +25,14 @@ router.post('/createBill', async (req,res) => {
             products : req.body.products,
             discount : req.body.discount,
             total : req.body.total,
-            Date : req.body.date
+            Date : req.body.Date
         });
-        res.json({ success: true });
         console.log('new data');
+        return res.json({ success: true });
         }
       } catch (error) {
         console.log(error);
-        res.json({ success: false });
+        return res.json({ success: false });
       }
 })
 

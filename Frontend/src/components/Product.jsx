@@ -7,6 +7,7 @@ import Footer from "./Footer";
 export default function Product() {
   const [product, setProduct] = useState([]);
   const [search, setSearch] = useState('');
+  const [viewMode, setViewMode] = useState(false);
   const productCat = [];
 
   product.map((data) => {
@@ -21,16 +22,36 @@ export default function Product() {
       setProduct(response.data);
     };
     productData();
+    
+    // Check for view mode
+    const isViewMode = localStorage.getItem('viewMode') === 'true';
+    setViewMode(isViewMode);
+    
+    // Listen for custom view mode change event
+    const handleViewModeChange = (event) => {
+      setViewMode(event.detail);
+    };
+    
+    window.addEventListener('viewModeChange', handleViewModeChange);
+    
+    return () => {
+      window.removeEventListener('viewModeChange', handleViewModeChange);
+    };
   }, []);
+
+  // Show content if authenticated OR in view mode
+  const shouldShowContent = localStorage.getItem('authToken') || viewMode;
+
   return (
     <>
-    {localStorage.getItem('authToken') 
-    && 
+    {shouldShowContent && 
     <><Navbar /><div>
           <div
             id="carouselExampleControls"
-            className="carousel slide mb-3"
+            className="carousel slide mb-4"
             data-bs-ride="carousel"
+            data-bs-interval="5000"
+            data-bs-pause="hover"
           >
             <div className="carousel-inner">
               <div className="carousel-caption" style={{ zIndex: "10" }}>
@@ -41,29 +62,48 @@ export default function Product() {
                     placeholder="Search products"
                     aria-label="Search"
                     value={search}
-                    onChange={(e) => setSearch(e.target.value)} />
+                    onChange={(e) => setSearch(e.target.value)}
+                    style={{
+                      borderRadius: "8px",
+                      border: "1px solid rgba(255, 255, 255, 0.3)",
+                      background: "rgba(255, 255, 255, 0.9)",
+                      backdropFilter: "blur(10px)",
+                      boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)"
+                    }} />
                 </div>
               </div>
               <div className="carousel-item active">
                 <img
-                  src="https://images.unsplash.com/photo-1722003185511-e9320e4a5d00?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHJhY2tldHxlbnwwfHwwfHx8MA%3D%3D"
+                  src="/Carousels/3db5d101-7084-4130-96f6-16ae85b54c24.jpg"
                   className="d-block w-100"
-                  style={{ maxHeight: "450px", objectFit: "contain !important" }}
-                  alt="Batminton" />
+                  style={{ 
+                    height: "500px", 
+                    objectFit: "cover",
+                    objectPosition: "center"
+                  }}
+                  alt="Premium Sports Collection" />
               </div>
               <div className="carousel-item">
                 <img
-                  src="https://media.istockphoto.com/id/1340904676/photo/oversized-t-shirt-mockup-in-front-side-and-back-views.jpg?s=612x612&w=0&k=20&c=tPd_xzjsrVnYOZgcCLziB29cv1eGclW_GduHzRyJWUc="
+                  src="/Carousels/8677c745-74fb-4bdf-8c4d-4385c6334e94.jpg"
                   className="d-block w-100"
-                  style={{ maxHeight: "450px", objectFit: "contain !important" }}
-                  alt="T-shirt" />
+                  style={{ 
+                    height: "500px", 
+                    objectFit: "cover",
+                    objectPosition: "center"
+                  }}
+                  alt="Sports Equipment Collection" />
               </div>
               <div className="carousel-item">
                 <img
-                  src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c3BvcnRzJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D"
+                  src="/Carousels/1952d8af-08a3-43be-9f59-13ea5600c306.jpg"
                   className="d-block w-100"
-                  style={{ maxHeight: "450px", objectFit: "contain !important" }}
-                  alt="Shoes" />
+                  style={{ 
+                    height: "500px", 
+                    objectFit: "cover",
+                    objectPosition: "center"
+                  }}
+                  alt="Athletic Footwear Collection" />
               </div>
             </div>
             <button
@@ -104,7 +144,7 @@ export default function Product() {
                       .map((data) => {
                         return (
                           <div key={data._id} className="col-12 col-md-6 col-lg-3">
-                            <Card product={data} />
+                            <Card product={data} viewMode={viewMode} />
                           </div>
                         );
                       })
