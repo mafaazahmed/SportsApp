@@ -131,12 +131,12 @@ export default function Product() {
               <span className="visually-hidden">Next</span>
             </button>
           </div>
-        </div><div className="container w-100" style={{ color: 'purple' }}>
+        </div><div className="container w-100" style={{ color: 'rgba(148, 30, 148, 0.85)'}}>
             {productCat != []
               ? productCat.map((data, index) => {
                 return (<div key={index + 1} className="row mb-3">
                   <div key={data._id} className="fs-3 m-3">
-                    <b><i>{data}</i></b>
+                    <b style={{color : "linear-gradient(135deg, rgba(128, 0, 128, 0.85) 0%, rgba(102, 126, 234, 0.85) 100%)"}}><i>{data}</i></b>
                   </div>
                   <hr />
                   {product != []
