@@ -119,3 +119,39 @@ body {
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
+@media print {
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  #invoice {
+    zoom: 0.70; /* Shrinks the content to fit one page - tweak if needed */
+     transform-origin: top center;
+    width: 100%;
+    page-break-inside: avoid;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    box-shadow: none !important;
+  }
+
+ 
+     @page {
+    size: A4 portrait;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+
+  .no-print {
+    display: none !important; /* Hide buttons or nav bars */
+  }
+}

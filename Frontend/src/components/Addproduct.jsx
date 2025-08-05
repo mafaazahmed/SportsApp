@@ -10,16 +10,15 @@ export default function Addproduct() {
     name: "",
     price: 0,
     quantity: 1,
-    category: "",
+    category: "shoe",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(product);
     navigate('/product');
     let res = await axios.post("http://localhost:3000/product/add", product);
     console.log(res);
-    setProduct({ name: "", price: 0, quantity: 1, category: ""});
+    setProduct({ name: "", price: 0, quantity: 1, category: "shoe"});
   };
  
   const onChange = async (e) => {
@@ -145,8 +144,7 @@ export default function Addproduct() {
                   <div className="row mb-4">
                     <div className="col-md-6">
                       <label htmlFor="exampleInputPassword1" className="form-label fw-semibold" style={{ color: '#2d3748', fontSize: '0.95rem' }}>
-                        <i className="fa-solid fa-dollar-sign me-2" style={{ color: '#667eea' }}></i>
-                        Price
+                        <span style={{ color: '#667eea' ,fontWeight: 'bold' }}>(&#x62f;&#x2e;&#x625;)</span> Price
                       </label>
                       <input
                         type="number"
@@ -206,6 +204,7 @@ export default function Addproduct() {
                     <button 
                       type="button" 
                       className="btn btn-outline-secondary fw-semibold"
+                      onClick={() => navigate('/product')}
                       style={{
                         borderRadius: '8px',
                         padding: '8px 16px',

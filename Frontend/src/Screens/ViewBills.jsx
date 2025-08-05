@@ -112,11 +112,12 @@ export default function ViewBills() {
       });
       setDisplayedBills(searchedBills);
       setSearchType("date");
-    } else {
-      // If no date is searched, show all bills
-      setDisplayedBills(bills);
-      setSearchType("all");
     }
+    // } else {
+    //   // If no date is searched, show all bills
+    //   setDisplayedBills(bills);
+    //   setSearchType("all");
+    // }
     
     setSuggestions([]);
     setSelectedBill(null);
@@ -319,7 +320,7 @@ export default function ViewBills() {
           onChange={handleSearchChange}
           style={{ borderRadius: '8px', border: '1px solid #e2e8f0' }}
         />
-        <button
+        {/* <button
           onClick={showAllBills}
           className="btn"
           style={{
@@ -333,7 +334,7 @@ export default function ViewBills() {
           }}
         >
           📋 Show Bills
-        </button>
+        </button> */}
           </div>
 
           {/* Show turnover for date/all search */}
@@ -451,7 +452,7 @@ export default function ViewBills() {
         borderRadius: '12px',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
         border: '1px solid #e2e8f0'
-      }}>
+      }} >
               <div className="d-flex mb-3 align-items-center">
                 <h5 className="d-flex align-items-center">
                   <div 
@@ -492,7 +493,7 @@ export default function ViewBills() {
                   </div>
                 </div>
         </div>
-        <table className="table" style={{ borderRadius: '8px', overflow: 'hidden' }}>
+        <table className="table" style={{ borderRadius: '8px', overflow: 'hidden' }} >
           <thead style={{ background: '#f7fafc', borderBottom: '2px solid #e2e8f0' }}>
             <tr>
                     <th style={{ width: '65%', fontWeight: 600, color: '#2d3748' }}>Product</th>
