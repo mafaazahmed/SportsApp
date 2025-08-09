@@ -110,9 +110,8 @@ export default function Card(props) {
             </div>
            </div>
            <div>
-            {localStorage.getItem('admin') && !props.viewMode && (
-              <>
-                <button 
+            {(localStorage.getItem('admin') === 'true' && !props.viewMode) ? (
+                <button  
                   onClick={() => handleEdit(props.product)} 
                   className="btn" 
                   style={{
@@ -138,8 +137,8 @@ export default function Card(props) {
                 >
                   Edit Product
                 </button>
-              </>
-            )}
+              
+            ) : null}
            </div>
         </div>
       </div>

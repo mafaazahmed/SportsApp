@@ -61,10 +61,11 @@ router.post("/login", async (req, res) => {
       const authToken = jwt.sign(data, jwtSecret);
 
     if (userData.role === "Admin") {
-      return res.json({ success: true, admin: true, authToken });
+      return res.json({ success: true, admin: true, cashier : false, authToken});
     }
 
-    return res.json({ success: true, admin: false, authToken});
+    //localStorage.setItem('cashier', true);
+    return res.json({ success: true, admin: false, cashier : false, authToken}); 
   } catch (e) {
     console.log(e);
     res.json({ success: false });

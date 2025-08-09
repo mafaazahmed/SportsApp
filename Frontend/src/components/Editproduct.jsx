@@ -17,11 +17,12 @@ export default function Editproduct() {
   });
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     navigate("/product");
     let res = await axios.put(
       `http://localhost:3000/product/update/${productData._id}`,
       product
-    );
+    ); 
   };
 
   let handleDelete = async (id) => {
@@ -174,25 +175,40 @@ export default function Editproduct() {
                     />
                   </div>
 
+                  
                   <div className="row mb-4">
                     <div className="col-md-6">
                       <label
-                        htmlFor="exampleInputPassword1"
+                        htmlFor="price"
                         className="form-label fw-semibold"
-                        style={{ color: "#2d3748", fontSize: "0.95rem" }}
+                        style={{
+                          color: "#2d3748",
+                          fontSize: "0.95rem",
+                        }}
                       >
-                        <span style={{ color: "#667eea" ,fontWeight: 'bold'  }}>
-                          (&#x62f;&#x2e;&#x625;)
+                        <span
+                          style={{
+                            color: "#667eea",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          (₹)
                         </span>{" "}
                         Price
                       </label>
                       <input
                         type="number"
+                        min="0"
                         className="form-control"
-                        id="exampleInputPassword1"
+                        id="price"
                         name="price"
                         value={product.price}
-                        onChange={onChange}
+                        onChange={(e) =>
+                          setProduct({
+                            ...product,
+                            price: Math.max(0, Number(e.target.value)),
+                          })
+                        }
                         placeholder="0.00"
                         style={{
                           borderRadius: "8px",
@@ -204,9 +220,12 @@ export default function Editproduct() {
                     </div>
                     <div className="col-md-6">
                       <label
-                        htmlFor="exampleInputQuantity"
+                        htmlFor="quantity"
                         className="form-label fw-semibold"
-                        style={{ color: "#2d3748", fontSize: "0.95rem" }}
+                        style={{
+                          color: "#2d3748",
+                          fontSize: "0.95rem",
+                        }}
                       >
                         <i
                           className="fa-solid fa-cubes me-2"
@@ -216,11 +235,17 @@ export default function Editproduct() {
                       </label>
                       <input
                         type="number"
+                        min="0"
                         className="form-control"
-                        id="exampleInputQuantity"
+                        id="quantity"
                         name="quantity"
                         value={product.quantity}
-                        onChange={onChange}
+                        onChange={(e) =>
+                          setProduct({
+                            ...product,
+                            quantity: Math.max(0, Number(e.target.value)),
+                          })
+                        }
                         placeholder="1"
                         style={{
                           borderRadius: "8px",

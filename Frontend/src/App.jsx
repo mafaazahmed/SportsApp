@@ -20,12 +20,12 @@ function App() {
    <Router>
     <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={
+          <Route path="/product" element={
             <ProtectedRoute>
-              <Home />
+              <Product />
             </ProtectedRoute>
           } />
-          <Route path="/product" element={
+          <Route path="/" element={
             <ProtectedRoute>
               <Product />
             </ProtectedRoute>

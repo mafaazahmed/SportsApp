@@ -14,6 +14,7 @@ router.get('/show', async (req,res) => {
 
 router.post('/createBill', async (req,res) => {
      let id = req.body.id;
+     console.log(id);
      try {
         let data = await Bill.findOne({bill_id : id});
         if(data){
@@ -34,6 +35,20 @@ router.post('/createBill', async (req,res) => {
         console.log(error);
         return res.json({ success: false });
       }
+})
+
+router.get('/lastBill', async (req, res) => {
+  try {
+    const lastBill = await Bill.findOne().sort({ _id: -1 }).limit(1);
+    if (lastBill) {
+      res.json(lastBill);
+    } else {
+      res.status(404).json({ message: 'No bills found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
 })
 
 module.exports = router;
