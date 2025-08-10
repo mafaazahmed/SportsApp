@@ -182,7 +182,7 @@ export default function Signup() {
                           htmlFor="adminRole"
                           style={{ color: "#2d3748", fontSize: "0.95rem" }}
                         >
-                          <i className="fa-solid fa-user-shield me-1 text-danger"></i>
+                          <i className="fa-solid fa-user-shield me-1 text-success"></i>
                           Administrator
                         </label>
                       </div>
@@ -206,7 +206,7 @@ export default function Signup() {
                           htmlFor="cashierRole"
                           style={{ color: "#2d3748", fontSize: "0.95rem" }}
                         >
-                          <i className="fa-solid fa-cash-register me-1 text-success"></i>
+                          <i className="fa-solid fa-cash-register me-1 text-danger"></i>
                           Cashier
                         </label>
                       </div>

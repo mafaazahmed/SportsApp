@@ -33,9 +33,9 @@ export default function ViewRoles() {
   const getRoleBadgeColor = (role) => {
     switch (role) {
       case "Admin":
-        return "bg-danger text-white";
-      case "Cashier":
         return "bg-success text-white";
+      case "Cashier":
+        return "bg-danger text-white";
       default:
         return "bg-secondary text-white";
     }
